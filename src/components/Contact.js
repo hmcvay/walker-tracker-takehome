@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import './../index.css';
 
 
 function Contact(){
@@ -8,14 +7,30 @@ function Contact(){
   const [isLoaded, setIsLoaded] = useState(false);
   const [contacts, setIsContacts] = useState([]);
 
+  const contactContainer = {
+    border: 'solid 1px black',
+    padding: '2%',
+    margin: '2%',
+    width: '300px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
+
+  const contactName = {
+    fontSize: '20pt',
+    fontWeight: 'bold'
+  }
+
+
   useEffect(() => {
-    fetch("https://randomuser.me/api/?inc=name,phone,email")
-      .then(res => res.json())
+    fetch("https://randomuser.me/api/?results=50")
+      .then(response => response.json())
       .then(
-        (result) => {
+        (response) => {
           setIsLoaded(true);
-          setIsContacts(result);
-          console.log(result);
+          setIsContacts(response.results);
         },
         (error) => {
           setIsLoaded(true);
@@ -30,13 +45,18 @@ function Contact(){
     return <div>Loading...</div>;
   } else {
     return (
-      <ul>
-
-        <li>
-          {contacts.results[0].name.first} {contacts.results[0].name.last}
-        </li>
-    
-      </ul>
+      <div>
+        {contacts.map(contact => (
+          <React.Fragment>
+            <div style={contactContainer}>
+              <img src={contact.picture.large} />
+              <div style={contactName}>{contact.name.first} {contact.name.last}</div>
+              <div>{contact.phone}</div>
+              <div>{contact.email}</div>
+            </div>
+          </React.Fragment>
+        ))}
+      </div>
     );
   }
 }
