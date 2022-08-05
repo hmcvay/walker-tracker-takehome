@@ -3,9 +3,19 @@ import './../index.css';
 
 function Header(){
 
+  const headerContainer = {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    marginLeft: '15%',
+    fontSize: '40px',
+
+  }
+
   return(
-    <div>
-      <p>HEADER</p>
+    <div style={headerContainer}>
+      <p>Your Contacts</p>
     </div>
   )
 }

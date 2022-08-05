@@ -4,12 +4,12 @@ import Header from "./Header";
 
 function App() {
   const appStyle = {
-    backgroundColor: '#FFFEF2',
     color: "#333333",
+    fontFamily: 'Montserrat, sans-serif'
   }
   return (
     <React.Fragment>
-      <div style={appStyle}>
+      <div style={appStyle} >
         <Header />
         <ContactList />
       </div>
