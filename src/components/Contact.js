@@ -9,17 +9,49 @@ function Contact(){
 
   const contactContainer = {
     border: 'solid 1px black',
+    borderRadius: '12px',
     padding: '2%',
     margin: '2%',
     width: '300px',
     display: 'flex',
     flexDirection: 'column',
+    alignItems: 'flex-start',
+    justifyContent: 'center'
+  }
+
+  const pageContainer = {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     alignItems: 'center',
     justifyContent: 'center'
   }
 
   const contactName = {
     fontSize: '20pt',
+    fontWeight: 'bold',
+    margin: '20px'
+  }
+
+  const contactImage = {
+    borderRadius: '8px',
+    marginBottom: '10px'
+  }
+
+  const contactHeader = {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end'
+  }
+
+  const loading = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translateX(-50%) translateY(-50%)',
+    fontSize: '50px',
     fontWeight: 'bold'
   }
 
@@ -42,15 +74,18 @@ function Contact(){
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
-    return <div>Loading...</div>;
+    return <div style={loading}>Loading...</div>;
   } else {
     return (
-      <div>
+      <div style={pageContainer}>
         {contacts.map(contact => (
           <React.Fragment>
             <div style={contactContainer}>
-              <img src={contact.picture.large} />
-              <div style={contactName}>{contact.name.first} {contact.name.last}</div>
+              <div style={contactHeader}>
+                <div><img style={contactImage} src={contact.picture.medium} /></div>
+                <div style={contactName}>{contact.name.first} {contact.name.last}</div>
+              </div>
+                
               <div>{contact.phone}</div>
               <div>{contact.email}</div>
             </div>
