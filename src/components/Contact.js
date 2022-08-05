@@ -96,7 +96,7 @@ function Contact(){
     return (
       <React.Fragment>
         <div style={searchContainer}>
-          <input placeholder='search' style={searchBar} onChange={event => setQuery(event.target.value)} />
+          <input placeholder='search name' style={searchBar} onChange={event => setQuery(event.target.value)} />
         </div>
         <div style={pageContainer}>
           {

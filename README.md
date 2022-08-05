@@ -4,7 +4,7 @@
 ## By Hayley McVay
 <br>
 
-### This application dynamically pulls a list of random contacts and displays them styled to look like virutal business cards. 
+### This application dynamically pulls a list of random contacts and displays them styled to look like virtual business cards. 
 
 <br>
 
@@ -15,18 +15,9 @@
 
 <br>
 
-## Technologies Used
-
-* React
-* Javascript
-* HTML
-* CSS
-
-<br>
-
 ## Description
 
-This is a take home challenge for WalkerTracker to demonstrate fundamentals in React, custom CSS styling, and my own coding style.
+This is a take home challenge for WalkerTracker to demonstrate fundamentals in React and my own coding style.
 <br>
 
 ## Setup/Installation Requirements
