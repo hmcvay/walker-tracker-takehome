@@ -6,6 +6,7 @@ function Contact(){
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [contacts, setIsContacts] = useState([]);
+  const [query, setQuery] = useState("");
 
   const contactContainer = {
     border: 'solid 1px black',
@@ -55,6 +56,22 @@ function Contact(){
     fontWeight: 'bold'
   }
 
+  const searchContainer = {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+    marginRight: '8%'
+
+  }
+
+  const searchBar = {
+    height: '30px',
+    fontSize: '16px',
+    borderRadius: '4px',
+    border: 'solid 1px black'
+  }
+
 
   useEffect(() => {
     fetch("https://randomuser.me/api/?results=50")
@@ -77,21 +94,32 @@ function Contact(){
     return <div style={loading}>Loading...</div>;
   } else {
     return (
-      <div style={pageContainer}>
-        {contacts.map(contact => (
-          <React.Fragment>
-            <div style={contactContainer}>
-              <div style={contactHeader}>
-                <div><img style={contactImage} src={contact.picture.medium} /></div>
-                <div style={contactName}>{contact.name.first} {contact.name.last}</div>
+      <React.Fragment>
+        <div style={searchContainer}>
+          <input placeholder='search' style={searchBar} onChange={event => setQuery(event.target.value)} />
+        </div>
+        <div style={pageContainer}>
+          {
+            contacts.filter(contact => {
+              if (query === '') {
+                return contact;
+              } else if (contact.name.first.toLowerCase().includes(query.toLowerCase())){
+                return contact;
+              }
+            }).map((contact, index) => (
+              <div key={index} style={contactContainer}>
+                <div style={contactHeader}>
+                  <div><img style={contactImage} src={contact.picture.medium} /></div>
+                  <div style={contactName}>{contact.name.first} {contact.name.last}</div>
+                </div>
+                  
+                <div>{contact.phone}</div>
+                <div>{contact.email}</div>
               </div>
-                
-              <div>{contact.phone}</div>
-              <div>{contact.email}</div>
-            </div>
-          </React.Fragment>
-        ))}
-      </div>
+            ))
+          }
+        </div>
+      </React.Fragment>
     );
   }
 }

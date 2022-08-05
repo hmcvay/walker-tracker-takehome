@@ -1,7 +1,6 @@
 import React from "react";
 import ContactList from './ContactList'
 import Header from "./Header";
-import Search from "./Search";
 
 function App() {
   const appStyle = {
@@ -12,7 +11,6 @@ function App() {
     <React.Fragment>
       <div style={appStyle}>
         <Header />
-        <Search />
         <ContactList />
       </div>
     </React.Fragment>
